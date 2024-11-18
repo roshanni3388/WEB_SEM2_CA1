@@ -1,0 +1,38 @@
+[{
+    "_id": {
+      "$oid": "6617c9c7042da19fdb46abdd"
+    },
+    "fname": "Roshani",
+    "lname": "Naik",
+    "email": "roshani@xyz.com",
+    "password": "roshani",
+    "pic": "pic_1712835015218.jpg",
+    "birthDate": "1999-01-01",
+    "contact": "9664821356",
+    "gender": "Female",
+    "city": "Mumbai",
+    "country": "India",
+    "pincode": "424211",
+    "state": "Maharashtra",
+    "status": "Pending",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "6617ca25042da19fdb46abe0"
+    },
+    "fname": "vishnu",
+    "lname": "abc",
+    "email": "vishnu@xyz.com",
+    "password": "vishnu",
+    "pic": "pic_1712835109032.jpg",
+    "birthDate": "2002-01-01",
+    "contact": "87483948",
+    "gender": "male",
+    "city": "Hyderabad",
+    "country": "India",
+    "pincode": "456721",
+    "state": "Andhra Pradesh",
+    "status": "Pending",
+    "__v": 0
+  }]
