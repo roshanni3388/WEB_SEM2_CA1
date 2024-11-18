@@ -1,0 +1,20 @@
+[{
+    "_id": {
+      "$oid": "6616c201017a831693ce366f"
+    },
+    "fname": "rosh",
+    "email": "rosh@.com",
+    "subject": "this is the normal",
+    "message": "what is the place name ",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "6617b81d042da19fdb46ab16"
+    },
+    "fname": "manoj",
+    "email": "manoj@abc.com",
+    "subject": "Service review",
+    "message": "Good Service",
+    "__v": 0
+  }]
