@@ -70,3 +70,52 @@ function Home() {
                                         <li><a href="#">Services</a></li>
                                         <li><a href="#">Portfolio</a></li>
                                     </ul>
+
+                                    </div>
+                                <div className="col">
+                                    <ul>
+                                        <li><a href="#">Team</a></li>
+                                        <li><a href="#">Pricing</a></li>
+                                        <li><a href="#">Blog</a></li>
+                                        <li><a href="#">Contact</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div className="col-lg-3  col-md-6 col-sm-6">
+                        <div className="single-footer-widget mail-chimp">
+                            <h6 className="mb-20">InstaFeed</h6>
+                            <ul className="instafeed d-flex flex-wrap">
+                                <li><img src="img/i1.jpg" alt="" /></li>
+                                <li><img src="img/i2.jpg" alt="" /></li>
+                                <li><img src="img/i3.jpg" alt="" /></li>
+                                <li><img src="img/i4.jpg" alt="" /></li>
+                                <li><img src="img/i5.jpg" alt="" /></li>
+                                <li><img src="img/i6.jpg" alt="" /></li>
+                                <li><img src="img/i7.jpg" alt="" /></li>
+                                <li><img src="img/i8.jpg" alt="" /></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div className="row footer-bottom d-flex justify-content-between align-items-center">
+                    <p className="col-lg-8 col-sm-12 footer-text m-0">
+                        Copyright &copy;{new Date().getFullYear()} All rights reserved | This template is made with <i className="fa fa-heart-o" aria-hidden="true"></i> by <h6>Flight Booking System</h6>
+                    </p>
+                    <div className="col-lg-4 col-sm-12 footer-social">
+                        <a href="#"><i className="fa fa-facebook"></i></a>
+                        <a href="#"><i className="fa fa-twitter"></i></a>
+                        <a href="#"><i className="fa fa-dribbble"></i></a>
+                        <a href="#"><i className="fa fa-behance"></i></a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+  )
+}
+
+export default Home
