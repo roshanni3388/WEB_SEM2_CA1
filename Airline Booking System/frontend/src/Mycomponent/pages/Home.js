@@ -37,3 +37,36 @@ function Home() {
               <li><Link to="login">User Login</Link></li>
               <li><Link to="signup">User SignUp</Link></li>
               <li><Link to="adminLogin">Admin Login</Link></li>
+
+              <li><Link to="contact">Contact</Link></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+       </header>
+      
+
+        <Outlet/>
+
+        <footer className="footer-area section-gap">
+            <div className="container">
+                <div className="row">
+                    <div className="col-lg-3  col-md-6 col-sm-6">
+                        <div className="single-footer-widget">
+                            <h6>About Agency</h6>
+                            <p>
+                            This headline positions your website as the gateway to exciting adventures. It assures users that they can book flights with confidence and convenience, knowing that your platform has everything they need for a smooth travel experience.
+                            </p>
+                        </div>
+                    </div>
+                    <div className="col-lg-3 col-md-6 col-sm-6">
+                        <div className="single-footer-widget">
+                            <h6>Navigation Links</h6>
+                            <div className="row">
+                                <div className="col">
+                                    <ul>
+                                        <li><a href="#">Home</a></li>
+                                        <li><a href="#">Feature</a></li>
+                                        <li><a href="#">Services</a></li>
+                                        <li><a href="#">Portfolio</a></li>
+                                    </ul>
