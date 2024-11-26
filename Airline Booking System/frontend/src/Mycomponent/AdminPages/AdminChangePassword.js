@@ -67,3 +67,79 @@ const Category = styled.div`
   margin: 14px 0;
   justify-content: space-between;
 `;
+
+const AdminChangePassword = () => {
+    axios.defaults.withCredentials = true;
+    const [currentPassword,setCurrentPassword]=useState()
+    const [newPassword,setNewPassword]=useState()
+    const [confirmPassword,setConfirmPassword]=useState()
+    const navigate=useNavigate()
+  
+  
+    const HendleSubmit=(e)=>{
+      e.preventDefault();
+      if(newPassword!=confirmPassword){
+          alert("Your New Password And Confirm Password Not Same")
+      }
+  
+      if(!confirmPassword || !newPassword || !currentPassword){
+          alert("Please Fill All filds")
+      }
+  
+      axios.put(`http://localhost:5000/admin/changePassword`,{currentPassword,newPassword})
+      .then((result)=>{
+         if(result.data.message==='Password changed successfully'){
+          alert('Password changed Successfully');
+          navigate('/')
+         }
+         else if(result.data.message==='Current password is incorrect.'){
+          alert('Your Current password is incorrect.')
+         }
+         else{
+          alert('Password Can Not Changed Unsuccessfully');
+         }
+      })
+      .catch((error)=>{
+       console.log(error)
+       alert("Password changed UnSuccesfully Due To Backend!");
+      })
+    }
+  
+    return (
+      <div style={{display:"flex",justifyContent:"center" ,paddingTop:"15vh" ,backgroundColor:"gray",minHeight:"100vh"}} >
+         <Container style={{margin:"20px"}} >
+        <Title>Admin Change Password</Title>
+        <div className="content">
+          <form >
+            <UserDetails>
+              <InputBox style={{width:"100%"}}>
+                <span className="details">Current Password </span>
+                <Input type="text" placeholder="Enter Your Current Password" onChange={(e)=>setCurrentPassword(e.target.value)} required />
+              </InputBox>
+              <InputBox style={{width:"100%"}} >
+                <span className="details">New Password</span>
+                <Input type="password" placeholder="Enter Your New Password" onChange={(e)=>setNewPassword(e.target.value)} required />
+              </InputBox>
+              <InputBox style={{width:"100%"}} >
+                <span className="details">Confirm Password</span>
+                <Input type="password" placeholder="Enter Your Confirm Password" onChange={(e)=>setConfirmPassword(e.target.value)} required />
+              </InputBox>
+            </UserDetails>
+            <div  style={{ display:"flex" , justifyContent:"center"}} >
+  
+             <button style={{backgroundColor:"GrayText",margin:'20px',height:"40px",width:"50%"  }} 
+             onClick={HendleSubmit}
+             type='button'
+             >
+                Submit 
+             </button>
+  
+            </div>
+          </form>
+        </div>
+      </Container>
+      </div>
+    );
+  
+  }
+  export default AdminChangePassword;
