@@ -72,3 +72,189 @@ const Category = styled.div`
   margin: 14px 0;
   justify-content: space-between;
 `;
+
+const UserUpdateProfile = () => {
+   
+    const [state,setState]=useState()
+    const [pincode,setPincode]=useState()
+    const [country,setCountry]=useState()
+    const [gender,setGender]=useState()
+    const [birthDate,setBirthDate]=useState()
+    const [city,setCity]=useState()
+    const [email,setEmail]=useState()
+    const [password,setPassword]=useState()
+    const [contact,setContact]=useState()
+    const [fname,setFname]=useState()
+    const [lname,setLname]=useState()
+    const [pic,setPic]=useState([])
+    const navigate=useNavigate()
+  
+    // Function to handle form submission
+      const handleSubmit = async (event) => {
+          event.preventDefault();
+  
+          if(!pic || !fname|| !contact ||  !lname || !email || !birthDate || !gender || !city || !country || !pincode || !state){
+            alert("Please fill all filds");
+            return
+          }
+        
+          const formData = new FormData();
+          formData.append('fname', fname);
+          formData.append('email', email);
+          formData.append('pic', pic); // Pass the file object directly
+          formData.append('contact', contact);
+          formData.append('lname', lname);
+          formData.append('password', password);
+          formData.append('birthDate', birthDate);
+          formData.append('gender', gender);
+          formData.append('city', city);
+          formData.append('country', country);
+          formData.append('pincode', pincode);
+          formData.append('state', state);
+
+          console.log(formData);
+        
+          axios.put(`http://localhost:5000/user/updateProfile`, formData, {
+              headers: {
+                  'Content-Type': 'multipart/form-data'
+              }
+          })
+          .then((result) => {
+              console.log(result.data.message);
+              if (result.data.message=== "User successfully updated") {
+                  navigate("/userMyProfile");
+                  alert("User Successfully Updated");
+              } else {
+                  alert("User Not Update !");
+              }
+          })
+          .catch((err) => {
+              console.error(err);
+              alert("Something went wrong");
+          });
+        }
+  
+  
+      const handleImageChange = (event) => {
+          const file = event.target.files[0];
+          setPic(file);
+      };
+      
+      const hendlClick2 = (e) => {
+        setGender(e.target.value);
+    }
+
+    useEffect(()=>{
+        axios.get(`http://localhost:5000/user/getUser`)
+        .then((result)=>{
+            console.log(result)
+          if(result.data.message==="We get all user"){
+            setPic(result.data.result.pic)
+            setLname(result.data.result.lname)
+            setFname(result.data.result.fname)
+            setContact(result.data.result.contact)
+            setPassword(result.data.result.password)
+            setEmail(result.data.result.email)
+            setCity(result.data.result.city)
+            setBirthDate(result.data.result.birthDate)
+            setGender(result.data.result.gender)
+            setCountry(result.data.result.country)
+            setPincode(result.data.result.pincode)
+            setState(result.data.result.state)
+
+          }
+  
+        }).catch((error)=>{
+          console.log(error)
+        })
+      },[])
+
+
+  return (
+    <div style={{display:"flex",justifyContent:"center" ,paddingTop:"15vh" ,backgroundColor:"gray"}} >
+         <Container style={{margin:"10px"}} >
+         <Center style={{padding:"20px"}} > <Title>Update My Profile </Title> </Center>
+
+      <div className="content">
+        <form action="#">
+          <UserDetails>
+            <InputBox>
+              <span className="details"> First Name</span>
+              <Input type="text" placeholder="Enter your first name" value={fname} onChange={(e)=>setFname(e.target.value)} required />
+            </InputBox>
+            <InputBox>
+              <span className="details">Last Name</span>
+              <Input type="text" placeholder="Enter your last name" value={lname} onChange={(e)=>setLname(e.target.value)} required />
+            </InputBox>
+            <InputBox>
+              <span className="details">Email</span>
+              <Input type="password" placeholder="Enter your email" value={email} onChange={(e)=>setEmail(e.target.value)} required />
+            </InputBox>
+            <InputBox>
+              <span className="details">Phone Number</span>
+              <Input type="password" placeholder="Enter your number" value={contact} onChange={(e)=>setContact(e.target.value)} required />
+            </InputBox>
+            <InputBox>
+              <span className="details">Country Name</span>
+              <Input type="text" placeholder="Enter your country name" value={country} onChange={(e)=>setCountry(e.target.value)} required />
+            </InputBox>
+            <InputBox>
+              <span className="details">State Name</span>
+              <Input type="text" placeholder="Enter your state name" value={state} onChange={(e)=>setState(e.target.value)} required />
+            </InputBox>
+            <InputBox>
+              <span className="details">City Name</span>
+              <Input type="text" placeholder="Enter your city name" value={city} onChange={(e)=>setCity(e.target.value)} required />
+            </InputBox>
+            <InputBox>
+              <span className="details">Pincode</span>
+              <Input type="text" placeholder="Enter your city name" value={pincode} onChange={(e)=>setPincode(e.target.value)} required />
+            </InputBox>
+         
+            <InputBox>
+              <span className="details">Image</span>
+              <Input type="file" placeholder="Enter your password" onChange={handleImageChange} required />
+            </InputBox>
+            <InputBox>
+            <InputBox>
+              <span className="details"> <Image
+                             borderRadius='full'
+                             boxSize='100px'
+                             src={`http://localhost:5000/images/${pic}`}
+                             alt={fname}
+                             style={{ marginLeft:"80px"}}
+                             /></span>
+            </InputBox>
+            </InputBox>
+            <InputBox>
+              <span className="details">Birth Date</span>
+              <Input type="date" placeholder="Enter your password" value={birthDate} onChange={(e)=>setBirthDate(e.target.value)} required />
+            </InputBox>
+          </UserDetails>
+          <GenderDetails>
+            Gender
+            <RadioGroup style={{ padding: '25px' }} onClick={hendlClick2} value={gender}>
+                    <Stack direction='row'>
+                          <Radio value="female">Female</Radio>
+                          <Radio value="male">Male</Radio>
+                    </Stack>
+        </RadioGroup>
+          </GenderDetails>
+
+        </form>
+        <div  style={{ display:"flex" , justifyContent:"center"}} >
+
+    <button style={{backgroundColor:"GrayText",margin:'20px',height:"40px",width:"50%"  }}  
+    onClick={handleSubmit}
+    type='button'
+      >
+    Submit
+</button>
+
+</div>
+      </div>
+    </Container>
+    </div>
+  );
+}
+export default UserUpdateProfile;
