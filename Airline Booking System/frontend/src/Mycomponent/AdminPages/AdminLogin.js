@@ -68,3 +68,72 @@ const Category = styled.div`
   margin: 14px 0;
   justify-content: space-between;
 `;
+
+const AdminLogin = () => {
+  axios.defaults.withCredentials = true;
+  const [username,setUsername]=useState()
+  const [password,setPassword]=useState()
+  const navigate=useNavigate()
+
+  const HendleSubmit=(e)=>{
+    e.preventDefault();
+
+    if(!password || !username){
+       return alert("Please Fill All filds")
+    }
+
+    axios.post(`http://localhost:5000/admin/login`,{username,password})
+    .then((result)=>{
+       if(result.data.message==="Admin login Succesfully !"){
+        alert("Admin login Succesfully !");
+        navigate('/dashBoard')
+       }
+       else if(result.data.message==="Sorry your password is wrong !"){
+        alert("Sorry Your Password is Wrong !");
+       }
+       else{
+        alert("Admin login  UnSuccesfully !");
+       }
+    })
+    .catch((error)=>{
+     console.log(error)
+     alert("Admin login UnSuccesfully Due To Backend!");
+    })
+
+}
+
+
+  return (
+    <div style={{display:"flex",justifyContent:"center" ,paddingTop:"15vh" ,backgroundColor:"gray"}} >
+         <Container style={{margin:"20px"}} >
+      <Title> Admin Login</Title>
+      <div className="content">
+        <form >
+          <UserDetails>
+            <InputBox>
+              <span className="details">Username</span>
+              <Input type="text" placeholder="Enter your username" onChange={(e)=>setUsername(e.target.value)} required />
+            </InputBox>
+            <InputBox>
+              <span className="details">Password</span>
+              <Input type="password" placeholder="Enter your password" onChange={(e)=>setPassword(e.target.value)} required />
+            </InputBox>
+          </UserDetails>
+          <div  style={{ display:"flex" , justifyContent:"center"}} >
+
+           <button style={{backgroundColor:"GrayText",margin:'20px',height:"40px",width:"50%"  }} 
+           onClick={HendleSubmit}
+           type='button'
+           >
+               Login
+           </button>
+
+          </div>
+        </form>
+      </div>
+    </Container>
+    </div>
+  );
+}
+
+export default AdminLogin;
