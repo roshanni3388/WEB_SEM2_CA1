@@ -73,3 +73,240 @@ const Category = styled.div`
   margin: 14px 0;
   justify-content: space-between;
 `;
+
+
+const ViewBookingDetails = () => {
+    const location=useLocation()
+    const {flightId}=location.state?location.state:{flightId:""}
+    const {flight}=location.state?location.state:{flight:""}
+
+    const navigate=useNavigate()
+      const handleSubmit = async (event) => {
+          event.preventDefault();
+          navigate("/viewUserBookings")
+          // if(!pic || !fname|| !contact ||  !lname ||  !password || !email || !birthDate || !gender || !city || !country || !pincode || !state){
+          //   alert("Please fill all filds");
+          //   return
+          // }
+        
+          // const formData = new FormData();
+          // formData.append('fname', fname);
+          // formData.append('email', email);
+          // formData.append('pic', pic); // Pass the file object directly
+          // formData.append('contact', contact);
+          // formData.append('lname', lname);
+          // formData.append('password', password);
+          // formData.append('birthDate', birthDate);
+          // formData.append('gender', gender);
+          // formData.append('city', city);
+          // formData.append('country', country);
+          // formData.append('pincode', pincode);
+          // formData.append('state', state);
+
+          // console.log(formData);
+        
+          // axios.post(`http://localhost:5000/flight/signup`, formData, {
+          //     headers: {
+          //         'Content-Type': 'multipart/form-data'
+          //     }
+          // })
+          // .then((result) => {
+          //     console.log(result.data.message);
+          //     if (result.data.message==='User SuccessFully Created') {
+          //         navigate("/");
+          //         alert("User Successfully Sign Up");
+          //     } else {
+          //         alert("Something error");
+          //     }
+          // })
+          // .catch((err) => {
+          //     console.error(err);
+          //     alert("Something went wrong");
+          // });
+
+        }
+  
+        const [showUsername, setShowUsername] = useState(false);
+
+        const toggleUsernameVisibility = () => {
+         setShowUsername(!showUsername)
+        };
+        const [showNumber, setShowNumber] = useState(false);
+       
+        const toggleNumberVisibility = () => {
+            setShowNumber(!showNumber);
+        };
+        const [adharNumber, setAdharShowNumber] = useState(false);
+       
+        const toggleAdharNumberVisibility = () => {
+         setAdharShowNumber(!adharNumber);
+        };
+       
+
+
+  return (
+    <div style={{display:"flex",justifyContent:"center" ,paddingTop:"15vh" ,backgroundColor:"gray"}} >
+         <Container style={{margin:"20px"}} >
+     <Center style={{padding:"20px"}} > <Title>Booking Details</Title></Center>
+      <div className="content">
+        <form action="#">
+          <UserDetails>
+            <InputBox>
+              <span className="details"> <h3>Image   <span className="details">  : </span> </h3></span>
+            </InputBox>
+            <InputBox>
+              <span className="details"> <Image
+                             borderRadius='full'
+                             boxSize='100px'
+                             src={`http://localhost:5000/images/${flight?.flightId?.pic}`}
+                             alt={flight?.fname}
+                             />
+             </span>
+            </InputBox>
+            <InputBox>
+              <span className="details"> <h3>Company Name   <span className="details">  : </span> </h3></span>
+            </InputBox>
+            <InputBox>
+              <span className="details"><h5>{flight?.flightId?.companyName}</h5></span>
+            </InputBox>
+            <InputBox>
+              <span className="details"> <h3>AirPort Name   <span className="details">  : </span> </h3></span>
+            </InputBox>
+            <InputBox>
+              <span className="details"><h5>{flight?.flightId?.airportName}</h5></span>
+            </InputBox>
+            <InputBox>
+              <span className="details"> <h3>Flight Name   <span className="details">  : </span> </h3></span>
+            </InputBox>
+            <InputBox>
+              <span className="details"><h5>{flight?.flightId?.flightName}</h5></span>
+            </InputBox>
+            <InputBox>
+              <span className="details"> <h3>Flight Number<span className="details">  : </span> </h3></span>
+            </InputBox>
+            <InputBox>
+              <span className="details"><h5>{flight?.flightId?.flightNumber}</h5></span>
+            </InputBox>
+
+          
+            <InputBox>
+              <span className="details"> <h3>From City  <span className="details">  : </span> </h3></span>
+            </InputBox>
+            <InputBox>
+              <span className="details"> <h5 >{flight?.flightId?.fromCity}  </h5>
+                    </span>
+            </InputBox>
+            <InputBox>
+              <span className="details"> <h3>Destination City  <span className="details">  : </span> </h3></span>
+            </InputBox>
+            <InputBox>
+              <span className="details"> <h5 >{flight?.flightId?.destinationCity}  </h5>
+                    </span>
+            </InputBox>
+            <InputBox>
+              <span className="details"> <h3>User Name <span className="details">  : </span> </h3></span>
+            </InputBox>
+            <InputBox>
+              <span className="details"> <h5 >{flight?.userId?.fname}  </h5>
+                    </span>
+            </InputBox>
+            {/* <InputBox>
+              <span className="details"> <h3>From City Departure Time<span className="details">  : </span> </h3></span>
+            </InputBox>
+            <InputBox>
+              <span className="details"> <h5 >{flight?.fromCityDTime}  </h5>
+                    </span>
+            </InputBox>
+            <InputBox>
+              <span className="details"> <h3>Destination City Arrival Time<span className="details">  : </span> </h3></span>
+            </InputBox>
+            <InputBox>
+              <span className="details"> <h5 >{flight?.destinationCityATime}  </h5>
+                    </span>
+            </InputBox>
+            <InputBox>
+              <span className="details"> <h3>Destination City Departure Time  <span className="details">  : </span> </h3></span>
+            </InputBox>
+            <InputBox>
+              <span className="details"> <h5 >{flight?.destinationCityDTime}  </h5>
+                    </span>
+            </InputBox> */}
+            <InputBox>
+              <span className="details"> <h3>Total Days <span className="details">  : </span> </h3></span>
+            </InputBox>
+            <InputBox>
+              <span className="details"> <h5 >{flight?.flightId?.days}  </h5>
+                    </span>
+            </InputBox>
+            <InputBox>
+              <span className="details"> <h3>Booking Id<span className="details">  : </span> </h3></span>
+            </InputBox>
+            <InputBox>
+              <span className="details"> <h5 >{flight?.bookingId}  </h5>
+                    </span>
+            </InputBox>
+            <InputBox>
+              <span className="details"> <h3>Total Price <span className="details">  : </span> </h3></span>
+            </InputBox>
+            <InputBox>
+              <span className="details"> <h5 >{flight?.total}  </h5>
+                    </span>
+            </InputBox>
+            <InputBox>
+              <span className="details"> <h3>Booking Date  <span className="details">  : </span> </h3></span>
+            </InputBox>
+            <InputBox>
+              <span className="details"> <h5 >{flight?.date}  </h5>
+                    </span>
+            </InputBox>
+            <InputBox>
+              <span className="details"> <h3>Passenger Details  <span className="details">  : </span> </h3></span>
+            </InputBox>
+          
+            <div style={{ width:"100%"}}>
+      <table style={{ width:"100%"}} >
+        <thead>
+          <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Age</th>
+            <th>Gender</th>
+            <th>Booking Type</th>
+          </tr>
+        </thead>
+        <tbody>
+          {flight?.passengers.map((passenger, index) => (
+            <tr key={index}>
+              <td >{passenger.firstName}</td>
+              <td >{passenger.lastName}</td>
+              <td >{passenger.age}</td>
+              <td >{passenger.gender}</td>
+              <td >{passenger.bookingType=="Business Seat Fare"?"Business Class":"Economy Class" }</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+            
+
+
+
+          </UserDetails>
+
+        </form>
+        <div  style={{ display:"flex" , justifyContent:"center"}} >
+
+    <button style={{backgroundColor:"GrayText",margin:'20px',height:"40px",width:"50%"  }}  
+    onClick={handleSubmit}
+    type='button'
+      >
+    Back 
+</button>
+
+</div>
+      </div>
+    </Container>
+    </div>
+  );
+}
+export default ViewBookingDetails;
