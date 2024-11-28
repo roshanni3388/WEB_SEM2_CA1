@@ -1,0 +1,20 @@
+[{
+    "_id": {
+      "$oid": "6616c201017a831693ce366f"
+    },
+    "fname": "Shiva",
+    "email": "shiva@gmail.com",
+    "subject": "adhoc questionaire",
+    "message": "luggage query",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "6617b81d042da19fdb46ab16"
+    },
+    "fname": "roshani",
+    "email": "roshani@gmail.com",
+    "subject": "delay flight",
+    "message": "uninformed",
+    "__v": 0
+  }]
