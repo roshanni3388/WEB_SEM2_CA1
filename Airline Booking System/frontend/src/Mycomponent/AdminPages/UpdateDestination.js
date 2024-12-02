@@ -72,3 +72,125 @@ const Category = styled.div`
   margin: 14px 0;
   justify-content: space-between;
 `;
+const UpdateDestination = () => {
+  const location=useLocation()
+  const {destination}=location.state?location.state:{destination :""}
+  const [airportName,setAirportName]=useState(destination?.airportName)
+  const [countryName,setCountry]=useState(destination?.countryName)
+  const [cityName,setCity]=useState(destination?.cityName)
+  const [desId,setdesId]=useState(destination?._id)
+  const [pic,setPic]=useState([destination?.pic])
+  const navigate=useNavigate()
+
+  // useEffect(()=>{
+
+  //     setCountry(destination?.countryName)
+  //     console.log(destination?.countryName)
+  // },[])
+
+  // Function to handle form submission
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+
+        if(!pic || !cityName|| !countryName ||  !airportName || !desId){
+          alert("Please fill all filds");
+          return
+        }
+      
+        const formData = new FormData();
+        formData.append('countryName', countryName);
+        formData.append('cityName', cityName);
+        formData.append('pic', pic); // Pass the file object directly
+        formData.append('airportName', airportName);
+
+        console.log(formData);
+      
+        axios.put(`http://localhost:5000/admin/updateDestination/${desId}`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
+        .then((result) => {
+            console.log(result.data.message);
+            if (result.data.message==="Destination successfully updated") {
+                navigate("/viewDestination");
+                alert("Destination SuccessFully Updated");
+            } else {
+                alert("Something error");
+            }
+        })
+        .catch((err) => {
+            console.error(err);
+            alert("Something went wrong");
+        });
+      }
+
+
+    const handleImageChange = (event) => {
+        const file = event.target.files[0];
+        setPic(file);
+    };
+    
+  //   const hendlClick2 = (e) => {
+  //     setGender(e.target.value);
+  // }
+
+
+return (
+  <div style={{display:"flex", flexDirection:"column",justifyContent:"center" ,paddingTop:"20vh" ,backgroundColor:"gray"}} >
+       <div className="text-center wow fadeInUp" data-wow-delay="0.1s">
+          <h1 className="mb-5">Update Destination</h1>         
+      </div> 
+    <center>
+    <Container style={{margin:"10px"}} >
+    <Title> Destination</Title>
+    <div className="content">
+      <form action="#">
+        <UserDetails>
+          <InputBox style={{width:"100%"}} >
+            <span className="details">Country Name</span>
+            <Input type="text" value={countryName} placeholder="Enter your country name" onChange={(e)=>setCountry(e.target.value)} required />
+          </InputBox>
+          <InputBox style={{width:"100%"}} >
+            <span className="details">City Name</span>
+            <Input type="text" value={cityName} placeholder="Enter your city name" onChange={(e)=>setCity(e.target.value)} required />
+          </InputBox >
+          <InputBox style={{width:"100%"}} >
+            <span className="details">AirPort Name</span>
+            <Input type="text" value={airportName} placeholder="Enter your airport name" onChange={(e)=>setAirportName(e.target.value)} required />
+          </InputBox>
+      
+          <InputBox style={{width:"100%"}} >
+            <span className="details">Image</span>
+            <Input type="file"  placeholder="Enter your password" onChange={handleImageChange} required />
+          </InputBox>
+          <InputBox>
+            <span className="details"> <Image
+                           borderRadius='full'
+                           boxSize='100px'
+                           src={`http://localhost:5000/images/${pic}`}
+                        
+                           style={{ marginLeft:"40vh"}}
+                           /></span>
+          </InputBox>
+        </UserDetails>
+    
+
+      </form>
+      <div  style={{ display:"flex" , justifyContent:"center"}} >
+
+  <button style={{backgroundColor:"GrayText",margin:'20px',height:"40px",width:"50%"  }}  
+  onClick={handleSubmit}
+  type='button'
+    >
+  Submit
+</button>
+
+</div>
+    </div>
+  </Container>
+    </center>
+  </div>
+);
+}
+export default UpdateDestination;
