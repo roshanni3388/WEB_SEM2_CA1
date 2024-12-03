@@ -27,7 +27,7 @@ mongoose.connect('mongodb://localhost:27017/Airline Booking System')
 
 
 app.get("/",async(req,res)=>{
-    res.json("Roshani server started")
+    res.json("Server started")
 })
 
 const PORT = 5000; 
