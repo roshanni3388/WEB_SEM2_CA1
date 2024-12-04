@@ -36,4 +36,26 @@ app.use(cors({
       
       const upload = multer({
           storage: storage
-      }) 
+      })
+      const verifyuser= async (req,res,next)=>{
+        console.log(req.cookies)
+        const token=req.cookies.Token;
+        console.log(token)
+        if(!token){
+           return res.json({Error:"The token was not available"})
+        }else{
+         jwt.verify(token,"jwt-secret-key",(err,decoded)=>{
+        if(err){
+         console.error(err)
+         return res.json({Error:"Token is  wrong"})
+        }
+        console.log(decoded);
+        req.role=decoded.role;
+        req.user=decoded.user
+        req.id=decoded.id
+        next()
+    
+       })
+    
+        }
+    }
