@@ -8,6 +8,8 @@ const mongoose = require("mongoose")
 const path = require('path');
 const cors = require('cors');
 const multer = require('multer');
+const AdminRouter=require("./routers/AdminRouter");
+const UserRouter=require("./routers/UserRouter");
 const FlightModel = require('./models/FlightModel');
 const BookingModel = require('./models/BookingModel');
 const ContactModel = require('./models/ContactModel');
@@ -24,7 +26,8 @@ app.use(cors({
  
 mongoose.connect('mongodb://localhost:27017/Airline Booking System')
 
-
+app.use('/admin',AdminRouter   )
+app.use('/user',UserRouter)
 
 app.get("/",async(req,res)=>{
     res.json("Server started")
