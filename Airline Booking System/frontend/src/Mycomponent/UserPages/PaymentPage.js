@@ -88,3 +88,46 @@ const PaymentPage = () => {
     navigate("/viewUserBookings")
 
   }
+
+  return (
+    <div style={{display:"flex",justifyContent:"center" ,paddingTop:"15vh" ,backgroundColor:"gray"}} >
+       <Container style={{margin:"20px"}} >
+      <Title> Payment Page </Title>
+      <div className="content">
+        <form >
+          <UserDetails>
+          <InputBox style={{width:"100%"}} >
+              <span className="details">Account Holder Name</span>
+              <Input type="text" placeholder="Enter Account Holder Name" onChange={(e)=>setNewPassword(e.target.value)} required />
+            </InputBox>
+            <InputBox style={{width:"100%"}}>
+              <span className="details">Card Number </span>
+              <Input type="text" placeholder="Ex.8899/9999/8888" onChange={(e)=>setCurrentPassword(e.target.value)} required />
+            </InputBox>
+            <InputBox style={{width:"100%"}} >
+              <span className="details">Expiry Date</span>
+              <Input type="text" placeholder="MM/YY" onChange={(e)=>setConfirmPassword(e.target.value)} required />
+            </InputBox>
+            <InputBox style={{width:"100%"}} >
+              <span className="details">CVC Number</span>
+              <Input type="password" placeholder="CVC" onChange={(e)=>setConfirmPassword2(e.target.value)} required />
+            </InputBox>
+          </UserDetails>
+          <div  style={{ display:"flex" , justifyContent:"center"}} >
+
+           <button style={{backgroundColor:"GrayText",margin:'20px',height:"40px",width:"50%"  }} 
+           onClick={HendleSubmit}
+           type='button'
+           >
+               Submit
+           </button>
+
+          </div>
+        </form>
+      </div>
+    </Container>
+    </div>
+  );
+
+}
+export default PaymentPage;
