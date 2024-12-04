@@ -59,3 +59,31 @@ app.use(cors({
     
         }
     }
+router.post('/login',async(req,res)=>{
+       const {username,password} =req.body
+        
+       AdminModel.findOne({username}).
+       then((data)=>{
+        if(!data){
+            return res.json({message:"Sorry admin not exit"})
+        }
+        if(data && data.password!=password){
+            return res.json({message:"Sorry your password is wrong !"})
+        }
+    
+        const token = jwt.sign(
+            { role : 'admin',id:data._id, user:data },
+            "jwt-secret-key",
+            { expiresIn:"1d" }
+         )
+    
+         res.cookie('Token',token);
+         console.log(token)
+         res.json({message:"Admin login Succesfully !",data,token}) 
+    
+       })
+       .catch((error)=>{
+         res.json({message:"Admin login Unsuccesfully !",error}) 
+       })
+    
+    }) 
