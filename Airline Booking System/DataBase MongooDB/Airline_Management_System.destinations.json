@@ -1,0 +1,33 @@
+[{
+    "_id": {
+      "$oid": "6617ce30042da19fdb46abf3"
+    },
+    "countryName": "India",
+    "airportName": "Chennai International Airport",
+    "pic": "pic_1712836143829.jpg",
+    "cityName": "Chennai",
+    "status": "Pending",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "6617ce68042da19fdb46abf6"
+    },
+    "countryName": "Ireland",
+    "airportName": " Dublin Airport",
+    "pic": "pic_1712836200119.jpg",
+    "cityName": "Dublin",
+    "status": "Pending",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "6617ce8e042da19fdb46abf9"
+    },
+    "countryName": "UK",
+    "airportName": "UK Airport",
+    "pic": "pic_1712836238526.jpg",
+    "cityName": "London",
+    "status": "Pending",
+    "__v": 0
+  }]
