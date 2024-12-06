@@ -35,6 +35,57 @@ import ViewDestination from './Mycomponent/AdminPages/ViewDestination';
 import FrontDestinationPage from './Mycomponent/Pages/FrontDestinationPage';
 import UpdateDestination from './Mycomponent/AdminPages/UpdateDestination';
 
+function App() {
+  return (
+    <div className="App">
+    <Routes>
+      <Route path="/" element={<Home />} >
+      <Route index element={<DataHome />}  /> 
+      <Route path="contact"  element={<FrontContactPage/>}  />
+      <Route path="signup"  element={<Signup />}  />
+      <Route path="login"  element={<Login2 />}  />
+      <Route path="adminLogin"  element={<AdminLogin />}  />
+      <Route path="frontViewFlights"  element={<FrontViewFlights/>}  />
+      <Route path="frontDestinationPage" element={<FrontDestinationPage/>}  /> 
+      </Route>
+
+      <Route path="/" element={<AdminPanel />} >
+      <Route path="dashBoard" element={<DashBoard />}  /> 
+      <Route path="adminChangePassword" element={<AdminChangePassword />}  /> 
+      <Route path="viewAllUser" element={<ViewAllUser/>}  /> 
+      <Route path="addFlight" element={<AddFlight/>}  /> 
+      <Route path="viewAllFlight" element={<ViewAllFlights/>}  /> 
+      <Route path="updateFlight" element={<UpdateFlight/>}  /> 
+      <Route path="viewAllBooking" element={<ViewAllBooking/>}  /> 
+      <Route path="userBookingDetails" element={<UserBookingDetails/>}  /> 
+      <Route path="viewAllContactAndFeedback" element={<ViewAllContactAndFeedback/>}  /> 
+      <Route path="addDestination" element={<AddDestination/>}  /> 
+      <Route path="viewDestination" element={<ViewDestination/>}  /> 
+      <Route path="updateDestination" element={<UpdateDestination/>}  /> 
+   
+
+      </Route>
+      <Route path="/" element={<UserPanel />} >
+      <Route path="userdashBoard" element={<UserDashBoard />}  /> 
+      <Route path="userChangePassword" element={<UserChangePassword/>}  /> 
+      <Route path="userMyProfile" element={<UserMyProfile/>}  /> 
+      <Route path="userUpdateProfile" element={<UserUpdateProfile/>}  /> 
+      <Route path="viewUserFlights" element={<ViewUserFlights/>}  /> 
+      <Route path="viewFlightDetails" element={<ViewFlightDetails/>}  /> 
+      <Route path="bookFlights" element={<BookFlights/>}  /> 
+      <Route path="viewUserBookings" element={<ViewUserBookings/>}  /> 
+      <Route path="viewBookingDetails" element={<ViewBookingDetails/>}  /> 
+      <Route path="paymentPage" element={<PaymentPage/>}  /> 
+      <Route path="userContact" element={<ContactPage/>}  /> 
+      <Route path="userDestinationPage" element={<FrontDestinationPage/>}  /> 
+      </Route>
+   
+    </Routes>
+  </div>
+  );
+}
+
+export default App;
 
 
 
