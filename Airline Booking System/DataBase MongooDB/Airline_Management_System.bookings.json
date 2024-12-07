@@ -1,0 +1,117 @@
+[{
+    "_id": {
+      "$oid": "6617cf3e042da19fdb46ac1c"
+    },
+    "userId": {
+      "$oid": "6617c9c7042da19fdb46abdd"
+    },
+    "flightId": {
+      "$oid": "6617cc8f042da19fdb46abe8"
+    },
+    "bookingId": "8913C7",
+    "total": "2500",
+    "passengers": [
+      {
+        "firstName": "Priyanshu",
+        "lastName": "Sisodiya",
+        "age": "21",
+        "gender": "Male",
+        "bookingType": "Economiy Seat Fare",
+        "_id": {
+          "$oid": "6617cf3e042da19fdb46ac1d"
+        }
+      },
+      {
+        "firstName": "Vandava",
+        "lastName": "Sisodiya",
+        "age": "25",
+        "gender": "Female",
+        "bookingType": "Business Seat Fare",
+        "_id": {
+          "$oid": "6617cf3e042da19fdb46ac1e"
+        }
+      }
+    ],
+    "date": {
+      "$date": "2024-04-11T11:53:34.468Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "6617cfb4042da19fdb46ac28"
+    },
+    "userId": {
+      "$oid": "6617c9c7042da19fdb46abdd"
+    },
+    "flightId": {
+      "$oid": "6617cd61042da19fdb46abeb"
+    },
+    "bookingId": "897A2A",
+    "total": "4500",
+    "passengers": [
+      {
+        "firstName": "Roshan",
+        "lastName": "Singh",
+        "age": "50",
+        "gender": "Male",
+        "bookingType": "Business Seat Fare",
+        "_id": {
+          "$oid": "6617cfb4042da19fdb46ac29"
+        }
+      },
+      {
+        "firstName": "Divya",
+        "lastName": "Sisodiya",
+        "age": "55",
+        "gender": "Female",
+        "bookingType": "Economiy Seat Fare",
+        "_id": {
+          "$oid": "6617cfb4042da19fdb46ac2a"
+        }
+      }
+    ],
+    "date": {
+      "$date": "2024-04-11T11:55:32.877Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "6617d097042da19fdb46ac49"
+    },
+    "userId": {
+      "$oid": "6617ca25042da19fdb46abe0"
+    },
+    "flightId": {
+      "$oid": "6617cd61042da19fdb46abeb"
+    },
+    "bookingId": "211DD2",
+    "total": "4000",
+    "passengers": [
+      {
+        "firstName": "Bhuvan",
+        "lastName": "Bhshkar",
+        "age": "25",
+        "gender": "Male",
+        "bookingType": "Business Seat Fare",
+        "_id": {
+          "$oid": "6617d097042da19fdb46ac4a"
+        }
+      },
+      {
+        "firstName": "Krishna",
+        "lastName": "Panday",
+        "age": "19",
+        "gender": "Female",
+        "bookingType": "Business Seat Fare",
+        "_id": {
+          "$oid": "6617d097042da19fdb46ac4b"
+        }
+      }
+    ],
+    "date": {
+      "$date": "2024-04-11T11:59:19.101Z"
+    },
+    "__v": 0
+  }]
