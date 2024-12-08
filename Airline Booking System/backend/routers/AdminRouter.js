@@ -178,3 +178,64 @@ router.post('/login',async(req,res)=>{
           res.status(500).json({ message: "Failed to update Flight", error });
       }
   });
+    router.get('/getAllFlight',async(req,res)=>{
+      FlightModel.find({})
+      .then((result)=>{
+        res.json({message:"We get all Flight",result})
+      })
+      .catch((error)=>{
+         res.json({message:"We can not get all Flight",error})
+      })
+
+    })
+   
+    router.delete('/deleteFlight/:id',async(req,res)=>{
+      const id=req.params.id
+      FlightModel.findByIdAndDelete(id)
+      .then((result)=>{
+        res.json({message:"Flight SuccesFully Deleted",result})
+      })
+      .catch((error)=>{
+         res.json({message:"Flight SuccesFully Not Delete",result})
+      })
+
+    })
+
+    router.get('/getFlight/:id',async(req,res)=>{
+      const id=req.params.id
+      FlightModel.findById(id)
+      .then((result)=>{
+        res.json({message:"Flight SuccesFully Get",result})
+      })
+      .catch((error)=>{
+         res.json({message:"Flight SuccesFully Not Get",result})
+      })
+
+    })
+   
+    router.post("/createDestination",upload.single("pic"),async(req,res)=>{
+      const pic = req.file ? req.file.filename : null;  
+   
+      const {cityName,airportName,countryName} =req.body
+   
+      DestinationModel.create({cityName,airportName,countryName,pic})
+      .then((result)=>{
+       res.json({message:"Destination SuccessFully Created",result})
+      })
+      .catch((error)=>{
+       res.json({message:"Sorry Destination SuccessFully not Created",error})
+      })
+       
+
+   })  
+  
+   router.get('/getAllDestination',async(req,res)=>{
+    DestinationModel.find({})
+    .then((result)=>{
+      res.json({message:"We get all Destination",result})
+    })
+    .catch((error)=>{
+       res.json({message:"We can not get all Destination",error})
+    })
+
+  })
