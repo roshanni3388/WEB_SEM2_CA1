@@ -85,5 +85,47 @@ router.post('/login',async(req,res)=>{
        .catch((error)=>{
          res.json({message:"Admin login Unsuccesfully !",error}) 
        })
-    
     }) 
+    router.get('/logout',async(req,res)=>{
+        res.clearCookie('Token');
+        console.log(res.cookies)
+        return res.json( {Status: 'Logout successful'});
+    
+    })
+
+    router.put('/changePassword', verifyuser, async(req, res) => {
+        const userId = req.id;
+        console.log("userId", userId)
+        const { currentPassword, newPassword } = req.body;
+       
+        if (!mongoose.Types.ObjectId.isValid(userId)) {
+          return res.status(400).json({ error: 'Invalid user ID.' });
+        }
+      
+        AdminModel.findById(userId)
+          .then((user) => {
+            if (!user) {
+              return res.status(200).json({ message: 'User not found.' });
+            }
+            // Compare the provided current password with the stored password
+            if (currentPassword != user.password) {
+              return res.status(200).json({ message: 'Current password is incorrect.' });
+            }
+      
+            // Update the user's password with the new password
+            user.password = newPassword;
+            user.save()
+              .then(() => {
+                // Password changed successfully
+                res.status(200).json({ message: 'Password changed successfully' });
+              })
+              .catch((saveErr) => {
+                console.error(saveErr);
+                res.status(500).json({ message: 'User update failed.' });
+              });
+          })
+          .catch((err) => {
+            console.error(err);
+            res.status(500).json({ message: 'Password change failed.' });
+          });
+      });
