@@ -129,3 +129,52 @@ router.post('/login',async(req,res)=>{
             res.status(500).json({ message: 'Password change failed.' });
           });
       });
+
+    router.post("/createFlight",upload.single("pic"),async(req,res)=>{
+       const pic = req.file ? req.file.filename : null;  
+    
+       const {economicSeatFare,economicSeats,businessSeatFare,businessSeats,days,
+        destinationCityDTime,destinationCityATime,fromCityDTime,fromCityATime,
+        destinationCity,fromCity,airportName,flightNumber,flightName,companyName
+        } =req.body
+    
+       FlightModel.create({economicSeatFare,economicSeats,businessSeatFare,businessSeats,days,
+        destinationCityDTime,destinationCityATime,fromCityDTime,fromCityATime,
+        destinationCity,fromCity,airportName,flightNumber,flightName,companyName,pic})
+       .then((result)=>{
+        res.json({message:"Flight SuccessFully Created",result})
+       })
+       .catch((error)=>{
+        res.json({message:"Sorry Flight SuccessFully not Created",error})
+       })
+        
+
+    })   
+    router.put("/updateFlight/:id",verifyuser, upload.single("pic"), async (req, res) => {
+      const id=req.params.id
+  
+      // Retrieve the existing destination by ID
+      try {
+          const flight = await FlightModel.findById(id);
+          if (!flight) {
+              return res.status(404).json({ message: "Flight not found" });
+          }
+  
+          // Update picture names only if new ones are provided, else retain the previous ones
+          const pic = req.file ? req.file.filename : flight.pic;  
+  
+          // Update other fields
+          const {economicSeatFare,economicSeats,businessSeatFare,businessSeats,days,
+            destinationCityDTime,destinationCityATime,fromCityDTime,fromCityATime,
+            destinationCity,fromCity,airportName,flightNumber,flightName,companyName
+            } =req.body
+          const updatedflight = await FlightModel.findByIdAndUpdate(id, {pic,economicSeatFare,economicSeats,businessSeatFare,businessSeats,days,
+            destinationCityDTime,destinationCityATime,fromCityDTime,fromCityATime,
+            destinationCity,fromCity,airportName,flightNumber,flightName,companyName
+            }, { new: true });
+  
+          res.json({ message:"Flight successfully updated", flight: updatedflight });
+      } catch (error) {
+          res.status(500).json({ message: "Failed to update Flight", error });
+      }
+  });
