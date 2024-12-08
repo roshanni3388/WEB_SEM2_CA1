@@ -238,4 +238,42 @@ router.post('/login',async(req,res)=>{
        res.json({message:"We can not get all Destination",error})
     })
 
+    })
+    router.delete('/deleteDestination/:id',async(req,res)=>{
+    const id=req.params.id
+    DestinationModel.findByIdAndDelete(id)
+    .then((result)=>{
+      res.json({message:"Destination SuccesFully Deleted",result})
+    })
+    .catch((error)=>{
+       res.json({message:"Destination SuccesFully Not Delete",result})
+    })
+
   })
+
+  router.put("/updateDestination/:id", upload.single("pic"), async (req, res) => {
+    const id=req.params.id
+
+    // Retrieve the existing destination by ID
+    try {
+        const destination = await DestinationModel.findById(id);
+        if (!destination) {
+            return res.status(404).json({ message: "Destination not found" });
+        }
+
+        // Update picture names only if new ones are provided, else retain the previous ones
+        const pic = req.file ? req.file.filename : destination.pic;  
+
+        // Update other fields
+        const  {cityName,airportName,countryName} =req.body
+
+        // Update the destination
+        const updateddestination = await DestinationModel.findByIdAndUpdate(id, {cityName,airportName,countryName,pic}, { new: true });
+
+        res.json({ message:"Destination successfully updated", destination: updateddestination });
+    } catch (error) {
+        res.status(500).json({ message: "Failed to update Destination", error });
+    }
+});
+
+module.exports=router;
