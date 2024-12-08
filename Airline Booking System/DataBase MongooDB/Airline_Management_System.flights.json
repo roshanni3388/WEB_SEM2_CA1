@@ -1,0 +1,46 @@
+[{
+    "_id": {
+      "$oid": "6617cc8f042da19fdb46abe8"
+    },
+    "companyName": "Jet Airways",
+    "flightName": "Jet Airways",
+    "flightNumber": "1243543",
+    "airportName": "Chennai International Airport",
+    "fromCity": "Chennai",
+    "destinationCity": "DUblin",
+    "fromCityATime": "02:10",
+    "fromCityDTime": "02:20",
+    "destinationCityATime": "03:00",
+    "destinationCityDTime": "03:10",
+    "days": "Monday-Friday",
+    "businessSeats": "130",
+    "businessSeatFare": "1000",
+    "economicSeats": "180",
+    "economicSeatFare": "250",
+    "pic": "pic_1712835726872.avif",
+    "status": "Pending",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "6617cd61042da19fdb46abeb"
+    },
+    "companyName": "Indigo Airlines",
+    "flightName": "Indigo",
+    "flightNumber": "223366",
+    "airportName": " Dublin International Airport",
+    "fromCity": "Dublin",
+    "destinationCity": "Chennai",
+    "fromCityATime": "10:13",
+    "fromCityDTime": "10:20",
+    "destinationCityATime": "12:14",
+    "destinationCityDTime": "12:20",
+    "days": "Saturday-Sunday",
+    "businessSeats": "90",
+    "businessSeatFare": "2000",
+    "economicSeats": "120",
+    "economicSeatFare": "2500",
+    "pic": "pic_1712835937143.jpg",
+    "status": "Pending",
+    "__v": 0
+  }]

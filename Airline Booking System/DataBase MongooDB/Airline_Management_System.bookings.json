@@ -12,20 +12,20 @@
     "total": "2500",
     "passengers": [
       {
-        "firstName": "Priyanshu",
-        "lastName": "Sisodiya",
-        "age": "21",
-        "gender": "Male",
+        "firstName": "Roshani",
+        "lastName": "Naik",
+        "age": "31",
+        "gender": "Female",
         "bookingType": "Economiy Seat Fare",
         "_id": {
           "$oid": "6617cf3e042da19fdb46ac1d"
         }
       },
       {
-        "firstName": "Vandava",
-        "lastName": "Sisodiya",
+        "firstName": "Vishnu",
+        "lastName": "Reddy",
         "age": "25",
-        "gender": "Female",
+        "gender": "Male",
         "bookingType": "Business Seat Fare",
         "_id": {
           "$oid": "6617cf3e042da19fdb46ac1e"
@@ -33,7 +33,7 @@
       }
     ],
     "date": {
-      "$date": "2024-04-11T11:53:34.468Z"
+      "$date": "2024-12-11T11:53:34.468Z"
     },
     "__v": 0
   },
@@ -51,9 +51,9 @@
     "total": "4500",
     "passengers": [
       {
-        "firstName": "Roshan",
-        "lastName": "Singh",
-        "age": "50",
+        "firstName": "Manoj",
+        "lastName": "Mehram",
+        "age": "26",
         "gender": "Male",
         "bookingType": "Business Seat Fare",
         "_id": {
@@ -61,10 +61,10 @@
         }
       },
       {
-        "firstName": "Divya",
-        "lastName": "Sisodiya",
-        "age": "55",
-        "gender": "Female",
+        "firstName": "Shiva",
+        "lastName": "Reddy",
+        "age": "25",
+        "gender": "Male",
         "bookingType": "Economiy Seat Fare",
         "_id": {
           "$oid": "6617cfb4042da19fdb46ac2a"
@@ -90,8 +90,8 @@
     "total": "4000",
     "passengers": [
       {
-        "firstName": "Bhuvan",
-        "lastName": "Bhshkar",
+        "firstName": "Anita",
+        "lastName": "Bhaskar",
         "age": "25",
         "gender": "Male",
         "bookingType": "Business Seat Fare",
@@ -101,7 +101,7 @@
       },
       {
         "firstName": "Krishna",
-        "lastName": "Panday",
+        "lastName": "Pandey",
         "age": "19",
         "gender": "Female",
         "bookingType": "Business Seat Fare",
