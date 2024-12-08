@@ -119,6 +119,11 @@ app.use(cors({
         return res.json({Status:"Success" , role:req.role , user:req.user,})
     })
     
+   
+    router.get('/home',verifyuser,(req,res)=>{
+        return res.json({Status:"Success" , role:req.role , user:req.user,})
+    })
+    
     router.put('/changePassword', verifyuser, async(req, res) => {
         const userId = req.id;
         console.log("userId", userId)
