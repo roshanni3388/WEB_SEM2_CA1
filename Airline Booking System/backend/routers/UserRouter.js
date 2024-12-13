@@ -160,3 +160,174 @@ app.use(cors({
             res.status(500).json({ message: 'Password change failed.' });
           });
       });
+    router.delete('/deleteUser/:id',async(req,res)=>{
+      const id=req.params.id
+      UserModel.findByIdAndDelete(id)
+      .then((result)=>{
+        res.json({message:"User SuccesFully Deleted",result})
+      })
+      .catch((error)=>{
+         res.json({message:"User SuccesFully Not Delete",result})
+      })
+
+    })
+    
+    router.get('/getUser',verifyuser,async(req,res)=>{
+      
+      const id=req.user._id
+      UserModel.findById(id)
+      .then((result)=>{
+        res.json({message:"We get all user",result})
+      })
+      .catch((error)=>{
+         res.json({message:"We can not get all User",error})
+      })
+
+    })
+    router.get('/getAllUser',async(req,res)=>{
+      UserModel.find({})
+      .then((result)=>{
+        res.json({message:"We get all user",result})
+      })
+      .catch((error)=>{
+         res.json({message:"We can not get all User",error})
+      })
+
+    })
+   
+    router.put("/updateProfile",verifyuser, upload.single("pic"), async (req, res) => {
+      const id=req.user._id
+  
+      // Retrieve the existing destination by ID
+      try {
+          const user = await UserModel.findById(id);
+          if (!user) {
+              return res.status(404).json({ message: "user not found" });
+          }
+  
+          // Update picture names only if new ones are provided, else retain the previous ones
+          const pic = req.file ? req.file.filename : user.pic;  
+  
+          // Update other fields
+          const {fname,lname,email,password,state,contact,pincode,country,city,gender,birthDate} = req.body;
+  
+          // Update the destination
+          const updatedUser = await UserModel.findByIdAndUpdate(id, {pic,fname,lname,email,password,state,contact,pincode,country,city,gender,birthDate}, { new: true });
+  
+          res.json({ message: "User successfully updated", user: updatedUser });
+      } catch (error) {
+          res.status(500).json({ message: "Failed to update User", error });
+      }
+  });
+   
+  router.post("/createContact",async(req,res)=>{
+    const {fname,email,subject,message}=req.body
+ 
+    ContactModel.create({fname,email,subject,message})
+    .then((result)=>{
+     res.json({message:"Contact SuccessFully Created",result})
+    })
+    .catch((error)=>{
+     res.json({message:"Sorry Contact SuccessFully not Created",error})
+    })
+     
+ })
+ 
+ router.get('/searchFlight', async (req, res) => {
+  let { destinationCity, fromCity } = req.query;
+
+  // Convert destinationCity and fromCity to lowercase
+  destinationCity = destinationCity.toLowerCase();
+  fromCity = fromCity.toLowerCase();
+
+  // Use case-insensitive regex for search
+  FlightModel.find({
+    destinationCity: { $regex: new RegExp(destinationCity, 'i') },
+    fromCity: { $regex: new RegExp(fromCity, 'i') }
+  })
+    .then((result) => {
+      res.json({ message: "We get all Flight", result });
+    })
+    .catch((error) => {
+      res.json({ message: "We can not get all Flight", error });
+    });
+});
+ 
+router.post("/createBooking",verifyuser,async(req,res)=>{
+     
+    const userId = req.user._id    
+    const bookingId = crypto.randomBytes(3).toString('hex').toUpperCase();
+ 
+    const {passengers,total,flightId} =req.body
+ 
+    BookingModel.create({passengers,total,flightId,userId,bookingId})
+    .then((result)=>{
+     res.json({message:"Booking SuccessFully Created",result})
+    })
+    .catch((error)=>{
+     res.json({message:"Sorry Booking SuccessFully not Created",error})
+    })
+     
+
+ })  
+ router.get('/getUserBoking',verifyuser,async(req,res)=>{
+      
+  const id=req.user._id
+  BookingModel.find({userId:id})
+  .populate('userId')
+  .populate('flightId')
+  .then((result)=>{
+    res.json({message:"We get all Booking",result})
+  })
+  .catch((error)=>{
+     res.json({message:"We can not get all Booking",error})
+  })
+
+})
+router.get('/getAllContact',async(req,res)=>{
+  ContactModel.find({})
+  .then((result)=>{
+    res.json({message:"We get all Contact",result})
+  })
+  .catch((error)=>{
+     res.json({message:"We can not get all Contact",error})
+  })
+
+})
+router.get('/getAllBooking',async(req,res)=>{
+  BookingModel.find({})
+  .populate('userId')
+  .populate('flightId')
+  .then((result)=>{
+    res.json({message:"We get all Booking",result})
+  })
+  .catch((error)=>{
+     res.json({message:"We can not get all Booking",error})
+  })
+
+})
+
+router.delete('/deleteBooking/:id',async(req,res)=>{
+  const id=req.params.id
+  BookingModel.findByIdAndDelete(id)
+  .then((result)=>{
+    res.json({message:"Booking SuccesFully Deleted",result})
+  })
+  .catch((error)=>{
+     res.json({message:"Booking SuccesFully Not Delete",result})
+  })
+
+})
+router.delete('/deleteContact/:id',async(req,res)=>{
+  const id=req.params.id
+  ContactModel.findByIdAndDelete(id)
+  .then((result)=>{
+    res.json({message:"Contact SuccesFully Deleted",result})
+  })
+  .catch((error)=>{
+     res.json({message:"Contact SuccesFully Not Delete",result})
+  })
+
+})
+
+    module.exports=router;
